@@ -1,7 +1,8 @@
 // app/page.tsx
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react"; // <-- CHANGED: Import from 'react'
+import { useFormStatus } from "react-dom"; // <-- 'useFormStatus' stays in 'react-dom'
 import { submit, type FormState } from "@/app/lib/components/submit"; // Your import
 
 // 1. Define the initial state for the form
@@ -25,8 +26,8 @@ function SubmitButton() {
 
 // 3. Create your form component
 export default function MyForm() {
-  // 4. Hook up the server action with useFormState
-  const [state, formAction] = useFormState(submit, initialState);
+  // 4. Hook up the server action with useActionState
+  const [state, formAction] = useActionState(submit, initialState); // <-- CHANGED: Renamed hook
 
   return (
     <form action={formAction}>
