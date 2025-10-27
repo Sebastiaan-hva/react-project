@@ -34,7 +34,7 @@ export default function MyForm() {
 
       <div>
         <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" />
+        <input type="text" id="name" name="name" className="my-text-input" />
         {/* Display validation errors for 'name' */}
         {state.errors?.name && (
           <p style={{ color: "red" }}>{state.errors.name[0]}</p>
@@ -43,7 +43,7 @@ export default function MyForm() {
 
       <div>
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" />
+        <input type="email" id="email" name="email" className="my-text-input" />
         {/* Display validation errors for 'email' */}
         {state.errors?.email && (
           <p style={{ color: "red" }}>{state.errors.email[0]}</p>

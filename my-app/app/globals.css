@@ -24,3 +24,38 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.my-text-input {
+  /* 1. Color of the text you type */
+  color: #111827;
+  /* Dark gray text */
+
+  /* 2. Background color of the box */
+  background-color: #f9fafb;
+  /* Light gray background */
+
+  /* 3. Border color */
+  border: 1px solid #d1d5db;
+  /* Medium gray border */
+
+  /* --- Optional Extras --- */
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: border-color 0.2s;
+  /* Smooth transition for focus */
+}
+
+/* Style when the input is clicked (in focus) */
+.my-text-input:focus {
+  border-color: #0070f3;
+  /* A bright blue border on focus */
+  outline: none;
+  /* Removes the default browser focus ring */
+}
+
+/* Style the placeholder text */
+.my-text-input::placeholder {
+  color: #9ca3af;
+  /* Light gray placeholder text */
+}
