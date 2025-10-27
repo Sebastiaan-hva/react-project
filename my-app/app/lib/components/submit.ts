@@ -1,6 +1,7 @@
 // lib/submit.ts
 "use server";
 
+import { sql } from "@vercel/postgres";
 import { z } from "zod"; // Using Zod for server-side validation
 
 // Define a schema for your form data
@@ -45,26 +46,30 @@ export async function submit(
         };
     }
 
-    // 4. If validation succeeds, process the data
+    // 4. If validation succeeds, get the data
     const { name, email } = validatedFields.data;
 
+    // 5. Try inserting the data into the database
     try {
-        // --- Simulate a database call or API request ---
-        console.log("Submitting to database:", { name, email });
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        // --- End simulation ---
+        // --- THIS IS THE NEW PART ---
+        // This query inserts the validated data into your Vercel Postgres DB
+        await sql`
+      INSERT INTO subscribers (name, email) 
+      VALUES (${name}, ${email})
+    `;
+        // --- End database call ---
 
-        // 5. Return a success message
+        // 6. Return a success message
         return {
             success: true,
             message: `Success! Welcome, ${name}. Your email (${email}) is registered.`,
         };
     } catch (error) {
-        // 6. Handle any unexpected server errors
-        console.error("Submission error:", error);
+        // 7. Handle any database errors
+        console.error("Database submission error:", error);
         return {
             success: false,
-            message: "An unexpected error occurred. Please try again.",
+            message: "Database error. Failed to subscribe. Please try again.",
         };
     }
 }
